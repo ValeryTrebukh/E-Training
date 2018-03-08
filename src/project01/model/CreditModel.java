@@ -8,13 +8,14 @@ import java.util.Comparator;
 
 public class CreditModel {
 
-    private Loan[] loans = Helper.getFromPredefinedList(5);
+    private Loan[] loans = Helper.getFromPredefinedList(10);
 
     public Loan[] getLoans() {
         return loans;
     }
 
     public Loan[] getByMinRate(int value) {
+        if (value < 0) return new Loan[]{};
 
         int count = 0;
         for(Loan l : loans) {
@@ -34,6 +35,7 @@ public class CreditModel {
     }
 
     public Loan[] getByMaxAmount(int value) {
+        if (value < 0) return new Loan[]{};
 
         int count = 0;
         for(Loan l : loans) {
@@ -53,6 +55,7 @@ public class CreditModel {
     }
 
     public Loan[] getByMaxTerm(int value) {
+        if (value < 0) return new Loan[]{};
 
         int count = 0;
         for(Loan l : loans) {
