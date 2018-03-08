@@ -2,8 +2,8 @@ package project01.entity;
 
 public class Loan {
 
-    private int minValue;
-    private int maxValue;
+    private int minAmount;
+    private int maxAmount;
 
     private int minTerm;
     private int maxTerm;
@@ -13,9 +13,9 @@ public class Loan {
 
     private String bankName;
 
-    public Loan(String bankName, int minTerm, int maxTerm, int minValue, int maxValue, int minRate, int maxRate) {
-        this.minValue = minValue;
-        this.maxValue = maxValue;
+    public Loan(String bankName, int minTerm, int maxTerm, int minAmount, int maxAmount, int minRate, int maxRate) {
+        this.minAmount = minAmount;
+        this.maxAmount = maxAmount;
         this.minTerm = minTerm;
         this.maxTerm = maxTerm;
         this.minRate = minRate;
@@ -27,16 +27,16 @@ public class Loan {
     public String toString() {
         return bankName + "\t" +
                 "Loan term: " + minTerm + " Mo - " + maxTerm + " Mo\t" +
-                "Available credit: $" + minValue + " - $" + maxValue + "\t" +
+                "Available credit: $" + minAmount + " - $" + maxAmount + "\t" +
                 "Loan rates: " + minRate + "% - " + maxRate + "%";
     }
 
-    public int getMinValue() {
-        return minValue;
+    public int getMinAmount() {
+        return minAmount;
     }
 
-    public int getMaxValue() {
-        return maxValue;
+    public int getMaxAmount() {
+        return maxAmount;
     }
 
     public int getMinTerm() {
