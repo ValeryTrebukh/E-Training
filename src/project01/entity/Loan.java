@@ -17,7 +17,9 @@ public class Loan {
 
     private static int nextId = 1000;
 
-    public Loan(String bankName, int minTerm, int maxTerm, int minAmount, int maxAmount, int minRate, int maxRate) {
+    private boolean earlyRepayment;
+
+    public Loan(String bankName, int minTerm, int maxTerm, int minAmount, int maxAmount, int minRate, int maxRate, boolean earlyRepayment) {
         this.minAmount = minAmount;
         this.maxAmount = maxAmount;
         this.minTerm = minTerm;
@@ -25,6 +27,7 @@ public class Loan {
         this.minRate = minRate;
         this.maxRate = maxRate;
         this.bankName = bankName;
+        this.earlyRepayment = earlyRepayment;
         id = ++nextId;
     }
 
@@ -33,7 +36,8 @@ public class Loan {
         return id + "\t" + bankName + "\t" +
                 "Loan term: " + minTerm + " Mo - " + maxTerm + " Mo\t" +
                 "Available credit: $" + minAmount + " - $" + maxAmount + "\t" +
-                "Loan rates: " + minRate + "% - " + maxRate + "%";
+                "Loan rates: " + minRate + "% - " + maxRate + "%\t" +
+                "E-Rep: " + (earlyRepayment ? "YES" : "NO");
     }
 
     public int getMinAmount() {
@@ -66,5 +70,9 @@ public class Loan {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isEarlyRepayment() {
+        return earlyRepayment;
     }
 }

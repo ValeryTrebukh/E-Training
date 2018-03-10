@@ -15,9 +15,11 @@ public class CreditModel {
     }
 
     public Loan[] getByMinRate(int value) {
+
         if (value < 0) return new Loan[]{};
 
         int count = 0;
+
         for(Loan l : loans) {
             if(l.getMinRate()<=value) {
                 count++;
@@ -25,19 +27,24 @@ public class CreditModel {
         }
 
         Loan[] result = new Loan[count];
+
         int i = 0;
+
         for(Loan l : loans) {
             if(l.getMinRate()<=value) {
                 result[i++] = l;
             }
         }
+
         return result;
     }
 
     public Loan[] getByMaxAmount(int value) {
+
         if (value < 0) return new Loan[]{};
 
         int count = 0;
+
         for(Loan l : loans) {
             if(l.getMaxAmount()>=value) {
                 count++;
@@ -45,19 +52,24 @@ public class CreditModel {
         }
 
         Loan[] result = new Loan[count];
+
         int i = 0;
+
         for(Loan l : loans) {
             if(l.getMaxAmount()>=value) {
                 result[i++] = l;
             }
         }
+
         return result;
     }
 
     public Loan[] getByMaxTerm(int value) {
+
         if (value < 0) return new Loan[]{};
 
         int count = 0;
+
         for(Loan l : loans) {
             if(l.getMaxTerm()>=value) {
                 count++;
@@ -65,12 +77,38 @@ public class CreditModel {
         }
 
         Loan[] result = new Loan[count];
+
         int i = 0;
+
         for(Loan l : loans) {
             if(l.getMaxTerm()>=value) {
                 result[i++] = l;
             }
         }
+
+        return result;
+    }
+
+    public Loan[] getWithEarlyRepayment() {
+
+        int count = 0;
+
+        for(Loan l : loans) {
+            if(l.isEarlyRepayment()) {
+                count++;
+            }
+        }
+
+        Loan[] result = new Loan[count];
+
+        int i = 0;
+
+        for(Loan l : loans) {
+            if(l.isEarlyRepayment()) {
+                result[i++] = l;
+            }
+        }
+
         return result;
     }
 
@@ -119,4 +157,6 @@ public class CreditModel {
     public boolean checkId(int id) {
         return getById(id) != null;
     }
+
+
 }

@@ -86,6 +86,9 @@ public class CreditController {
                 view.print("Enter min amount.");
                 view.print(model.getByMaxAmount(Helper.requestInt()));
                 break;
+            case 4:
+                view.print(model.getWithEarlyRepayment());
+                break;
             default:
                 view.print("No such option available. Returning to main menu.");
                 break;
