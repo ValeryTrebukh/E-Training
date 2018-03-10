@@ -1,6 +1,6 @@
 package project01.entity;
 
-public class Loan {
+public class Credit {
 
     private int minAmount;
     private int maxAmount;
@@ -19,7 +19,7 @@ public class Loan {
 
     private boolean earlyRepayment;
 
-    public Loan(String bankName, int minTerm, int maxTerm, int minAmount, int maxAmount, int minRate, int maxRate, boolean earlyRepayment) {
+    public Credit(String bankName, int minTerm, int maxTerm, int minAmount, int maxAmount, int minRate, int maxRate, boolean earlyRepayment) {
         this.minAmount = minAmount;
         this.maxAmount = maxAmount;
         this.minTerm = minTerm;
@@ -34,9 +34,9 @@ public class Loan {
     @Override
     public String toString() {
         return id + "\t" + bankName + "\t" +
-                "Loan term: " + minTerm + " Mo - " + maxTerm + " Mo\t" +
+                "Credit term: " + minTerm + " Mo - " + maxTerm + " Mo\t" +
                 "Available credit: $" + minAmount + " - $" + maxAmount + "\t" +
-                "Loan rates: " + minRate + "% - " + maxRate + "%\t" +
+                "Credit rates: " + minRate + "% - " + maxRate + "%\t" +
                 "E-Rep: " + (earlyRepayment ? "YES" : "NO");
     }
 

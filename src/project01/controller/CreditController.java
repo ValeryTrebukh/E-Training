@@ -24,7 +24,7 @@ public class CreditController {
 
             switch (input) {
                 case 1:
-                    view.print(model.getLoans());
+                    view.print(model.getCredits());
                     break;
                 case 2:
                     sort();
@@ -53,15 +53,15 @@ public class CreditController {
         switch (input) {
             case 1:
                 model.sortByMinRate();
-                view.print(model.getLoans());
+                view.print(model.getCredits());
                 break;
             case 2:
                 model.sortByMaxTerm();
-                view.print(model.getLoans());
+                view.print(model.getCredits());
                 break;
             case 3:
                 model.sortByMaxAmount();
-                view.print(model.getLoans());
+                view.print(model.getCredits());
                 break;
             default:
                 view.print("No such option available. Returning to main menu.");
@@ -130,7 +130,7 @@ public class CreditController {
         if(Helper.requestInt() == 1) {
             view.print("Your order was successfully submitted.");
         } else {
-            view.print("Aborted. Returning to main menu.");
+            view.print("Aborted... Returning to main menu.");
         }
     }
 }

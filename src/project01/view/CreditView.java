@@ -1,17 +1,17 @@
 package project01.view;
 
-import project01.entity.Loan;
+import project01.entity.Credit;
 
 public class CreditView {
 
-    public void print(Loan[] loans) {
-        if(loans == null || loans.length == 0) {
+    public void print(Credit[] credits) {
+        if(credits == null || credits.length == 0) {
             System.out.println("No data matching request. Returning to main menu.");
             System.out.println();
             return;
         }
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             System.out.println(l.toString());
         }
         System.out.println();

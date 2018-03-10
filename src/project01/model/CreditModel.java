@@ -1,6 +1,6 @@
 package project01.model;
 
-import project01.entity.Loan;
+import project01.entity.Credit;
 import project01.utils.Helper;
 
 import java.util.Arrays;
@@ -8,29 +8,29 @@ import java.util.Comparator;
 
 public class CreditModel {
 
-    private Loan[] loans = Helper.getFromPredefinedList(10);
+    private Credit[] credits = Helper.getFromPredefinedList(10);
 
-    public Loan[] getLoans() {
-        return loans;
+    public Credit[] getCredits() {
+        return credits;
     }
 
-    public Loan[] getByMinRate(int value) {
+    public Credit[] getByMinRate(int value) {
 
-        if (value < 0) return new Loan[]{};
+        if (value < 0) return new Credit[]{};
 
         int count = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.getMinRate()<=value) {
                 count++;
             }
         }
 
-        Loan[] result = new Loan[count];
+        Credit[] result = new Credit[count];
 
         int i = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.getMinRate()<=value) {
                 result[i++] = l;
             }
@@ -39,23 +39,23 @@ public class CreditModel {
         return result;
     }
 
-    public Loan[] getByMaxAmount(int value) {
+    public Credit[] getByMaxAmount(int value) {
 
-        if (value < 0) return new Loan[]{};
+        if (value < 0) return new Credit[]{};
 
         int count = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.getMaxAmount()>=value) {
                 count++;
             }
         }
 
-        Loan[] result = new Loan[count];
+        Credit[] result = new Credit[count];
 
         int i = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.getMaxAmount()>=value) {
                 result[i++] = l;
             }
@@ -64,23 +64,23 @@ public class CreditModel {
         return result;
     }
 
-    public Loan[] getByMaxTerm(int value) {
+    public Credit[] getByMaxTerm(int value) {
 
-        if (value < 0) return new Loan[]{};
+        if (value < 0) return new Credit[]{};
 
         int count = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.getMaxTerm()>=value) {
                 count++;
             }
         }
 
-        Loan[] result = new Loan[count];
+        Credit[] result = new Credit[count];
 
         int i = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.getMaxTerm()>=value) {
                 result[i++] = l;
             }
@@ -89,21 +89,21 @@ public class CreditModel {
         return result;
     }
 
-    public Loan[] getWithEarlyRepayment() {
+    public Credit[] getWithEarlyRepayment() {
 
         int count = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.isEarlyRepayment()) {
                 count++;
             }
         }
 
-        Loan[] result = new Loan[count];
+        Credit[] result = new Credit[count];
 
         int i = 0;
 
-        for(Loan l : loans) {
+        for(Credit l : credits) {
             if(l.isEarlyRepayment()) {
                 result[i++] = l;
             }
@@ -113,19 +113,19 @@ public class CreditModel {
     }
 
     public void sortByMinRate() {
-        Arrays.sort(loans, Comparator.comparing(Loan::getMinRate));
+        Arrays.sort(credits, Comparator.comparing(Credit::getMinRate));
     }
 
     public void sortByMaxAmount() {
-        Arrays.sort(loans, Comparator.comparing(Loan::getMaxAmount));
+        Arrays.sort(credits, Comparator.comparing(Credit::getMaxAmount));
     }
 
     public void sortByMaxTerm() {
-        Arrays.sort(loans, Comparator.comparing(Loan::getMaxTerm));
+        Arrays.sort(credits, Comparator.comparing(Credit::getMaxTerm));
     }
 
-    public Loan getById(int id) {
-        for(Loan l : loans) {
+    public Credit getById(int id) {
+        for(Credit l : credits) {
             if (l.getId() == id)
                 return l;
         }
@@ -135,22 +135,22 @@ public class CreditModel {
 
     public int calcMonthlyPayment(int bankId, int term, int amount, int rate) {
 
-        Loan loan = getById(bankId);
+        Credit credit = getById(bankId);
 
-        amount = amount < loan.getMinAmount() ? loan.getMinAmount() : amount > loan.getMaxAmount() ? loan.getMaxAmount() : amount;
+        amount = amount < credit.getMinAmount() ? credit.getMinAmount() : amount > credit.getMaxAmount() ? credit.getMaxAmount() : amount;
 
         return (int)(((term / 12.0 * rate / 100) + 1) * amount / term);
     }
 
 
     public int calcRate(int bankId, int term) {
-        Loan loan = getById(bankId);
+        Credit credit = getById(bankId);
 
-        term = term < loan.getMinTerm() ? loan.getMinTerm() : term > loan.getMaxTerm() ? loan.getMaxTerm() : term;
+        term = term < credit.getMinTerm() ? credit.getMinTerm() : term > credit.getMaxTerm() ? credit.getMaxTerm() : term;
 
-        double delta = 1.0 * (loan.getMaxRate() - loan.getMinRate()) / (loan.getMaxTerm() - loan.getMinTerm());
+        double delta = 1.0 * (credit.getMaxRate() - credit.getMinRate()) / (credit.getMaxTerm() - credit.getMinTerm());
 
-        return (int)(delta * (loan.getMaxTerm() - term) + loan.getMinRate());
+        return (int)(delta * (credit.getMaxTerm() - term) + credit.getMinRate());
     }
 
 
