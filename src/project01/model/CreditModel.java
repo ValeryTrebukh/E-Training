@@ -74,11 +74,6 @@ public class CreditModel {
         return result;
     }
 
-    public int calcMonthlyPayment(int term, int amount, int rate) {
-
-        return (int)((term/12.0*rate/100 + 1)*amount/term);
-    }
-
     public void sortByMinRate() {
         Arrays.sort(loans, Comparator.comparing(Loan::getMinRate));
     }
@@ -89,5 +84,39 @@ public class CreditModel {
 
     public void sortByMaxTerm() {
         Arrays.sort(loans, Comparator.comparing(Loan::getMaxTerm));
+    }
+
+    public Loan getById(int id) {
+        for(Loan l : loans) {
+            if (l.getId() == id)
+                return l;
+        }
+        return null;
+    }
+
+
+    public int calcMonthlyPayment(int bankId, int term, int amount, int rate) {
+
+        Loan loan = getById(bankId);
+
+        amount = amount < loan.getMinAmount() ? loan.getMinAmount() : amount > loan.getMaxAmount() ? loan.getMaxAmount() : amount;
+
+        return (int)(((term / 12.0 * rate / 100) + 1) * amount / term);
+    }
+
+
+    public int calcRate(int bankId, int term) {
+        Loan loan = getById(bankId);
+
+        term = term < loan.getMinTerm() ? loan.getMinTerm() : term > loan.getMaxTerm() ? loan.getMaxTerm() : term;
+
+        double delta = 1.0 * (loan.getMaxRate() - loan.getMinRate()) / (loan.getMaxTerm() - loan.getMinTerm());
+
+        return (int)(delta * (loan.getMaxTerm() - term) + loan.getMinRate());
+    }
+
+
+    public boolean checkId(int id) {
+        return getById(id) != null;
     }
 }

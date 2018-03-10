@@ -24,7 +24,7 @@ public class CreditView {
 
 
     public void printMainMenu() {
-        System.out.println("SELECT: 1 - SHOW ALL\t2 - SORT\t3 - SEARCH\t0 - EXIT");
+        System.out.println("SELECT: 1 - SHOW ALL\t2 - SORT\t3 - SEARCH\t4 - GET CREDIT\t0 - EXIT");
     }
 
 
@@ -35,5 +35,9 @@ public class CreditView {
 
     public void printSearchMenu() {
         System.out.println("Search by: 1 - min rates\t2 - max term\t3 - max amount");
+    }
+
+    public void confirmationRequest() {
+        System.out.println("Press 1 to confirm your order.");
     }
 }
