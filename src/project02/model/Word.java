@@ -1,14 +1,21 @@
 package project02.model;
 
-import java.util.regex.Pattern;
 
 public class Word {
 
-    private static String regex = "[\\w\\-']+";
+    private String word;
 
-    private static Pattern pattern = Pattern.compile(regex);
+    Word(String word) {
+        this.word = word;
+    }
 
-    public static Pattern getPattern() {
-        return pattern;
+    static String getRegex() {
+        return "[\\w\\-']+";
+    }
+
+
+    @Override
+    public String toString() {
+        return word;
     }
 }
