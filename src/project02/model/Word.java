@@ -1,6 +1,8 @@
 package project02.model;
 
 
+import java.util.regex.Pattern;
+
 public class Word {
 
     private String word;
@@ -9,8 +11,8 @@ public class Word {
         this.word = word;
     }
 
-    static String getRegex() {
-        return "[\\w\\-']+";
+    static Pattern getPattern() {
+        return Pattern.compile("[\\w\\-']+");
     }
 
 

@@ -15,7 +15,7 @@ public class Text {
     }
 
     private List<Sentence> initSentences(String text) {
-        Pattern p = Pattern.compile(Sentence.getRegex());
+        Pattern p =Sentence.getPattern();
         Matcher m = p.matcher(text);
         List<Sentence> sentences = new ArrayList<>();
 

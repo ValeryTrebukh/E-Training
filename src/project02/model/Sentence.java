@@ -16,7 +16,7 @@ public class Sentence {
     }
 
     private List<Word> initWords(String sentence) {
-        Pattern p = Pattern.compile(Word.getRegex());
+        Pattern p = Word.getPattern();
         Matcher m = p.matcher(sentence);
 
         List<Word> words = new ArrayList<>();
@@ -28,8 +28,8 @@ public class Sentence {
         return words;
     }
 
-    static String getRegex() {
-        return "[A-Z][\\w\\s\\-,:;)(\\]\\[]+[.!?]+";
+    static Pattern getPattern() {
+        return Pattern.compile("[A-Z][\\w\\s\\-,:;)(\\]\\[]+[.!?]+");
     }
 
     List<Word> getWords() {
