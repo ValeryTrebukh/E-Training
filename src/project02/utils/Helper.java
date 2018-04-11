@@ -1,5 +1,7 @@
 package project02.utils;
 
+import org.apache.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Helper {
+
+    private static Logger logger = Logger.getRootLogger();
 
     public static String getFileName() {
         Scanner sc = new Scanner(System.in);
@@ -20,9 +24,11 @@ public class Helper {
             path = sc.nextLine();
 
             if(path.equals("EXIT")) {
+                logger.info("User typed 'exit' command. Application closed.");
                 System.exit(0);
             }
         }
+        logger.info("File to read: " + path);
         return path;
     }
 
@@ -39,9 +45,9 @@ public class Helper {
                 sb.append(line);
             }
         } catch (FileNotFoundException e) {
-            //log fnf
+            logger.error("Requested file not found");
         } catch (IOException e) {
-            //log io
+            logger.error("File reading error");
         }
         return sb.toString();
     }
