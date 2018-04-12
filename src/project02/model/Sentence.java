@@ -10,12 +10,12 @@ public class Sentence {
     private String sentence;
     private List<Word> words;
 
-    Sentence(String sentence) {
+    public Sentence(String sentence) {
         this.sentence = sentence;
-        words = initWords(sentence);
+        words = parseSentence(sentence);
     }
 
-    private List<Word> initWords(String sentence) {
+    private List<Word> parseSentence(String sentence) {
         Pattern p = Word.getPattern();
         Matcher m = p.matcher(sentence);
 
@@ -29,10 +29,10 @@ public class Sentence {
     }
 
     static Pattern getPattern() {
-        return Pattern.compile("[A-Z][\\w\\s\\-,:;)(\\]\\[]+[.!?]+");
+        return Pattern.compile("[A-Z0-9][\\w\\s\\-,:;)(\\]\\[]+[.!?]+");
     }
 
-    List<Word> getWords() {
+    public List<Word> getWords() {
         return words;
     }
 

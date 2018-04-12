@@ -11,10 +11,10 @@ public class Text {
     private List<Sentence> sentences;
 
     public Text(String text) {
-        sentences = initSentences(text);
+        sentences = parseText(text);
     }
 
-    private List<Sentence> initSentences(String text) {
+    private List<Sentence> parseText(String text) {
         Pattern p =Sentence.getPattern();
         Matcher m = p.matcher(text);
         List<Sentence> sentences = new ArrayList<>();

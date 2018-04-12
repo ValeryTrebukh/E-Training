@@ -12,6 +12,7 @@ public class Controller {
         Text text = new Text(Helper.readText());
 
         view.printSentences(text);
+        System.out.println();
 
         text.sortSentencesByWordsCount();
 
